@@ -9,32 +9,19 @@ import {
 } from "@heroui/react";
 import { BsThreeDots } from "react-icons/bs";
 import { FaCommentAlt, FaShare, FaThumbsUp } from "react-icons/fa";
+import CommentCard from "../Comments/CommentCard";
+import AppCardHeader from "../Shared/AppCardHeader/AppCardHeader";
 
 export default function PostCard({ post }) {
+  const postHasImage = !!post.image;
+  const firstComment = post.commentsCount;
   return (
     <Card fullWidth={true}>
-      <CardHeader className="flex justify-between gap-3">
-        <div className="flex items-center gap-1">
-          <Image
-            alt={post.user.name}
-            height={80}
-            radius="full"
-            src={post.user.photo}
-            width={80}
-          />
-          <div className="flex flex-col">
-            <p className="text-lg font-bold capitalize">{post.user.name}</p>
-            <p className="text-small text-default-500">{post.createdAt}</p>
-          </div>
-        </div>
-        <button>
-          <BsThreeDots />
-        </button>
-      </CardHeader>
+      <AppCardHeader topComment={false}  post={post}/>
       <Divider />
       <CardBody>
         <p>{post.body}</p>
-        {post?.image && (
+        {postHasImage && (
           <Image
             alt={post.body}
             height={400}
@@ -60,6 +47,8 @@ export default function PostCard({ post }) {
           Share
         </button>
       </CardFooter>
+
+      {firstComment && <CommentCard post={post} />}
     </Card>
   );
 }

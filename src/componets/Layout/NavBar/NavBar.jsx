@@ -11,30 +11,29 @@ import {
   DropdownItem,
 } from "@heroui/react";
 import { useContext } from "react";
-import { Link, useNavigate,  } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../context/AuthContext";
 
 export default function NavBar() {
-  const { UserToken , removeToken } = useContext(AuthContext);
+  const { UserToken, removeToken } = useContext(AuthContext);
 
-   const navigate = useNavigate()
-  
-  function handelLogout(){
-    console.log("click")
-    removeToken()
-    navigate("/login")
+  const navigate = useNavigate();
+
+  function handelLogout() {
+    console.log("click");
+    removeToken();
+    navigate("/login");
   }
   return (
     <HeroUINavebar className="border-b-1 border-b-gray-500">
-      <NavbarBrand>
+      <NavbarBrand as={Link} to="/">
         <p className="font-bold text-inherit">Kudo</p>
       </NavbarBrand>
 
       <NavbarContent justify="end">
-        
         {UserToken ? (
           <Dropdown placement="bottom-end">
-            <DropdownTrigger>
+            <DropdownTrigger >
               <Avatar
                 isBordered
                 as="button"
@@ -50,7 +49,9 @@ export default function NavBar() {
                 <p className="font-semibold">Signed in as</p>
                 <p className="font-semibold">zoey@example.com</p>
               </DropdownItem>
-              <DropdownItem key="user_profile">Profile</DropdownItem>
+              <DropdownItem key="user_profile" as={Link} to="/profile">
+                Profile
+              </DropdownItem>
               <DropdownItem key="logout" color="danger" onClick={handelLogout}>
                 Log Out
               </DropdownItem>
@@ -64,7 +65,7 @@ export default function NavBar() {
               </Link>
             </NavbarItem>
             <NavbarItem>
-              <Button as={Link} color="primary" to="/register" variant="flat" >
+              <Button as={Link} color="primary" to="/register" variant="flat">
                 Sign Up
               </Button>
             </NavbarItem>

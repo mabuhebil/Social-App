@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
         path: "profile",
         element: (
           <ProtectRouts>
-            <Home />
+            <Profile />
           </ProtectRouts>
         ),
       },
