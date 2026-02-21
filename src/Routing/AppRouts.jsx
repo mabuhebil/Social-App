@@ -8,6 +8,7 @@ import Login from "../pages/Aus/Login/Login";
 import Register from "../pages/Aus/Register/Register";
 import ProtectRouts from "./ProtectRouts";
 import ProtectAuthRouts from "./ProtectAuthRouts";
+import PostDetails from "../pages/PostDetails/PostDetails";
 
 export const router = createBrowserRouter([
   {
@@ -27,6 +28,14 @@ export const router = createBrowserRouter([
         element: (
           <ProtectRouts>
             <Profile />
+          </ProtectRouts>
+        ),
+      },
+      {
+        path: "post-details/:id",
+        element: (
+          <ProtectRouts>
+            <PostDetails />
           </ProtectRouts>
         ),
       },

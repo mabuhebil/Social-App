@@ -19,3 +19,14 @@ export async function getAllPosts() {
       },
     });
   }
+
+
+  export async function getSinglePost(id) {
+    return axios.request({
+      url: `${BASE_URL}/${POSTS_ENDPOINT}/${id}`,
+      method: "GET",
+      headers: {
+        Authorization: `Bearer ${localStorage.getItem("user_token")} `,
+      },
+    });
+  }
