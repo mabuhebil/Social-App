@@ -32,7 +32,7 @@ export const router = createBrowserRouter([
         ),
       },
       {
-        path: "post-details/:id",
+        path: "post-details/:postId",
         element: (
           <ProtectRouts>
             <PostDetails />

@@ -5,7 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllPosts } from "../Services/posts.services";
 
 export default function PostListing() {
-  const { data, error, isError, isLoading, isFetching } = useQuery({
+  const { data, error, isError, isLoading } = useQuery({
     queryKey: ["all-posts"],
     queryFn: getAllPosts,
   });

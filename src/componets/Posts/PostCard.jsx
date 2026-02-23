@@ -11,8 +11,9 @@ import { FaCommentAlt, FaShare, FaThumbsUp } from "react-icons/fa";
 import CommentCard from "../Comments/CommentCard";
 import AppCardHeader from "../Shared/AppCardHeader/AppCardHeader";
 import { Link } from "react-router-dom";
+import CommentForm from "../CommentForm";
 
-export default function PostCard({ post }) {
+export default function PostCard({ post, isDetails }) {
   const postHasImage = !!post.image;
   const firstComment = post.commentsCount;
   return (
@@ -48,11 +49,21 @@ export default function PostCard({ post }) {
         </button>
       </CardFooter>
 
-      {firstComment && <CommentCard post={post} />}
+      <CommentForm />
 
-      <Link to={`/post-details/${post.id}`} className="text-blue-700 p-4">
-        View All Comments
-      </Link>
+      {firstComment && <CommentCard comment={post.topComment} />}
+
+      {isDetails &&
+        post.commentsCount > 0 &&
+        Object.keys(post.topComment).map((comment) => {
+          <CommentCard comment={comment} />;
+        })}
+
+      {!isDetails && post.commentsCount > 1 && (
+        <Link to={`/post-details/${post.id}`} className="text-blue-700 p-4">
+          View All Comments
+        </Link>
+      )}
     </Card>
   );
 }
